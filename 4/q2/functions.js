@@ -66,10 +66,21 @@ function renderTable(){
     else if(sort==="Grade"){
         filteredStudents.sort((a, b) => b.studGrade - a.studGrade);
     }
-
+    //٦١-٧٥ اي لون و من ٧٦ -١٠٠ لونه اخضر
     tBody.innerHTML = "";
     filteredStudents.forEach(s => {
         let row = document.createElement("tr");
+        
+        if(s.studGrade<60){
+            row.classList.add("fail");
+        }
+        else if (s.studGrade<75){
+            row.classList.add("good");
+        }
+        else{
+            row.classList.add("excellent");
+        }
+
         for (let key in s) {
             let cell = document.createElement("td");
             cell.textContent = s[key];
