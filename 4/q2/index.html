@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form Demo</title>
+    <style>
+        .div1 {
+            text-align: left;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 40px auto;
+            font-size: 1.2rem;
+            padding: 20px 20px 30px;
+            width: 70%;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .add {
+            font-size: 1.2rem;
+            margin: auto;
+            padding: 10px 5px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            width: 40%;
+        }
+        .add:hover {
+            background-color: #218838;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        select {
+            font-size: 1.2rem;
+            margin-right: 20px;
+            width: 150px;
+        }   
+        option{
+            width: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        thead {
+            background-color: #6e7477;
+            color: white;
+        }
+        th, td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+        td {
+            background-color: #bed0da;
+        }
+        .div2{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <label for="dep">Department:</label>
+        <input type="radio" value="SD" name="dep" checked>SD
+        <input type="radio" value="OS" name="dep">OS
+        <input type="radio" value="EL" name="dep">EL
+        <br><br>
+
+        <label for="studentname">StudentName</label>
+        <input type="text" name="studentname" id="studentname">
+        <span id="nameError" class="Error" style="color: red;"></span>
+        <br><br>
+
+        <label for="studentgrade">StudentGrade</label>
+        <input type="text" name="studentgrade" id="studentgrade" >
+        <span id="gradeError" class="Error" style="color: red;"></span>
+        <br><br>
+        <div class="div2">
+            <button onclick="addStudent()" class="add">Add Student</button>
+            <br><br>
+        </div>       
+        <label for="sort">Sort</label>
+        <select name="sort" id="sort" onchange="renderTable()">
+            <option value="Name" onchange="renderTable()">Name</option>
+            <option value="Grade">Grade</option>
+        </select>
+
+        <label for="filter">Filter</label>
+        <select name="filter" id="filter" onchange="renderTable()">
+            <option value="All">All</option>
+            <option value="Pass">Pass</option>
+            <option value="Fail">Fail</option>
+        </select>
+        <br><br>
+
+        <table id="studentTable">
+            <thead>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Dept</th>
+                <th>Delete</th>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <script src="functions.js"></script>
+    </div>
+</body>
+</html>

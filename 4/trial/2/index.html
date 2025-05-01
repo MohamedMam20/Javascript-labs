@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student form demo</title>
+</head>
+<body>
+    <div>
+        <label>Department </label>
+        <input type="radio" value="SD" id="SD" name="Dept" checked>SD
+        <input type="radio" value="OS" id="OS" name="Dept">OS
+        <input type="radio" value="EL" id="EL" name="Dept">EL
+        <br><br>
+        <label for="name">Studentname</label>
+        <input type="text" placeholder="Enter name" id="studName" name="name">
+        <span id="nameError"></span>
+        <br><br>
+        <label for="grade">Studentgrade</label>
+        <input type="text" placeholder="Enter grade" id="studGrade" name="grade">
+        <span id="gradeError"></span>
+        <br><br>
+
+        <button onclick="addStudent()" class="add">Add Student</button>
+        <br><br>
+        <select name="sort" id="sort">
+            <option value="Name">Name</option>
+            <option value="Grade">Grade</option>
+        </select>
+        <select name="filter" id="filter">
+            <option value="All">All</option>
+            <option value="Sucess">Sucess</option>
+            <option value="Fail">Fail</option>
+        </select>
+        <table id="studentTable">
+            <thead>
+                <th>Name</th>
+                <th>Grade</th>
+                <th>Department</th>
+                <th>Delete</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <script src="function.js"></script>
+</body>
+</html>
