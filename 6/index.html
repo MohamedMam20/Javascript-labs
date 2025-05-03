@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAB6 CAR</title>
+</head>
+<body>
+    <script>
+        class Engine {
+            static #count=0;
+            constructor(source){
+                if(new.target === Engine){
+                    throw new Error("This class cannot be instantiated (Apstract class).");
+                }
+            this._source = source;
+            Engine.#count++;
+            }
+
+            static getCount(){
+                return Engine.#count;}
+        }
+        class Car extends Engine {
+            constructor(Top,Left,source){
+                super(source);
+                this._top=Top;
+                this._left=Left;
+                this._element = document.createElement("img");
+                this._element.src = source;
+                this._element.style.position="absolute";
+                this._element.style.top = `${this._top}px`;
+                this._element.style.left = `${this._left}px`;
+                this._element.style.width = "100px"
+                document.body.appendChild(this._element);
+                this._intervalId = null;
+            }
+            set top(value){
+                this._top=value;
+                this._element.style.top = `${value}px`;
+            }
+            set left(value){
+                this._left=value;
+                this._element.style.left = `${value}px`;
+            }
+            moveRight(x=5){
+                this._left += x;
+                this._element.style.left = `${this._left}px`;
+            }
+            moveLeft(x=5){
+                this._left -= x;
+                this._element.style.left = `${this._left}px`;
+            }
+            changeStyle(styles){
+                Object.assign(this._element.style, styles);
+            }
+            moveCar(direction,speed=10){
+                if (this._intervalId){
+                    clearInterval(this._intervalId);
+                }
+                this._intervalId = setInterval(() =>{
+                    if (direction === 'left'){
+                        this.moveLeft(speed);
+                        if (this._left <= 0){
+                            clearInterval(this._intervalId);
+                            this._intervalId = null;
+                        }
+                    }
+                    if (direction === 'right'){
+                        this.moveRight(speed);
+                        if (this._left >= window.innerWidth - this._element.offsetWidth){
+                            clearInterval(this._intervalId);
+                            this._intervalId = null;
+                        }
+                    }
+                },speed)
+            }
+        }
+       
+        var edge = window.innerWidth - 100;
+
+        var car1 = new Car(100, 0, "1.png");
+        var car2 = new Car(200, edge, "1.png");
+        var car3 = new Car(300, edge, "1.png");
+        var car4 = new Car(400, 0, "1.png");
+
+        car2.changeStyle({ transform: "scaleX(-1)" });
+        car3.changeStyle({transform: "scaleX(-1)"})
+
+        console.log(Engine.getCount());
+        
+        car1.moveCar("right", 5);
+        car2.moveCar("left", 6);
+        car3.moveCar("left", 6);
+        car4.moveCar("right", 5);
+
+    </script>
+</body>
+</html>
